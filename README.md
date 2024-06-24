@@ -2,7 +2,7 @@
 
 ## Über das Projekt
 
-Dieses Projekt ist ein OData RESTful Service, der mit .NET 6 oder .NET 8 entwickelt wurde. Es verwendet Entity Framework Core (EF Core) für die Verbindung mit einer PostgreSQL-Datenbank. Das Projekt ist für grundlegende CRUD-Operationen (Erstellen, Lesen, Aktualisieren, Löschen) ausgelegt.
+Dieses Projekt ist ein OData RESTful Service, der mit .NET 6 entwickelt wurde. Es verwendet Entity Framework Core (EF Core) für die Verbindung mit einer PostgreSQL-Datenbank. Das Projekt ist für grundlegende CRUD-Operationen (Erstellen, Lesen, Aktualisieren, Löschen) ausgelegt.
 
 ## Voraussetzungen
  - .NET 6 oder .NET 8 SDK
@@ -30,7 +30,7 @@ dotnet restore
 Zunächst müssen Sie das Projekt ausführen und den ConnectionString über die folgende API verschlüsseln 
 
 ```http
-	 https://localhost:5000/Crypto/Encrypt/{YourConnectionString}
+https://localhost:5000/Crypto/Encrypt/{YourConnectionString}
 ```
 	 
 Bearbeiten Sie die appsettings.json Datei, um Ihre PostgreSQL-Verbindungsinformationen einzugeben:

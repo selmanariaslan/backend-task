@@ -21,6 +21,11 @@ namespace Task.Tests
         {
             _client = factory.CreateClient();
         }
+
+        /// <summary>
+        /// This method tests retrieving all products.
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async System.Threading.Tasks.Task GetProductsReturnsOkResponse()
         {
@@ -31,6 +36,10 @@ namespace Task.Tests
             Assert.NotEmpty(result?.Data);
         }
 
+        /// <summary>
+        ///  This method tests retrieving a product by ID.
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async System.Threading.Tasks.Task GetProductByIdReturnsOkResponse()
         {
@@ -42,6 +51,10 @@ namespace Task.Tests
             Assert.Equal(1, result.Data.Id);
         }
 
+        /// <summary>
+        /// This method tests creating a new product object.
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async System.Threading.Tasks.Task PostProductReturnsCommonUpsertModel()
         {
@@ -55,6 +68,10 @@ namespace Task.Tests
             Assert.True(result.Data?.Status);
         }
 
+        /// <summary>
+        /// This method tests upating an existing product object
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async System.Threading.Tasks.Task PutProductReturnsCommonUpsertModel()
         {
@@ -69,6 +86,10 @@ namespace Task.Tests
             Assert.Equal(1, result.Data?.Id);
         }
 
+        /// <summary>
+        /// This method tests deleting a product by ID.
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async System.Threading.Tasks.Task DeleteProductReturnsCommonUpsertModel()
         {

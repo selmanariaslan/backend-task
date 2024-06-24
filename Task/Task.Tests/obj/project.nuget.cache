@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EWxvnn8r37w=",
+  "dgSpecHash": "XVG53My3C7lzerLMpK2cpWeyFN2Pm1t5XTV2MOoq+awE3j0gKP5Xsxos0m29kyG3L+bsCq9GSgKLv8VJW45qXA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ariaslan\\source\\repos\\backend-task\\Task\\Task.Tests\\Task.Tests.csproj",
   "expectedPackageFiles": [
@@ -155,10 +155,7 @@
     "C:\\Users\\ariaslan\\.nuget\\packages\\xunit.core\\2.4.2\\xunit.core.2.4.2.nupkg.sha512",
     "C:\\Users\\ariaslan\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\ariaslan\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "C:\\Users\\ariaslan\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
-    "C:\\Users\\ariaslan\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
-    "C:\\Users\\ariaslan\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
-    "C:\\Users\\ariaslan\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
+    "C:\\Users\\ariaslan\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
   ],
   "logs": []
 }

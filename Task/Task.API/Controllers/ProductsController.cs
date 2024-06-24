@@ -22,6 +22,10 @@ namespace Task.API.Controllers
         {
         }
 
+        /// <summary>
+        /// This method retrieves all active product list.
+        /// </summary>
+        /// <returns>ResponseBase<IQueryable<Product>></returns>
         [EnableQuery(PageSize = 15)]
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -39,6 +43,12 @@ namespace Task.API.Controllers
             responseModel: response);
             return await Api(response);
         }
+
+        /// <summary>
+        /// This method retrieves a product by ID.
+        /// </summary>
+        /// <param name="id">ProductId</param>
+        /// <returns>ResponseBase<Product></returns>
         [EnableQuery]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -57,6 +67,11 @@ namespace Task.API.Controllers
             return await Api(response);
         }
 
+        /// <summary>
+        /// This method creates a product with the given values in the product object in the database.
+        /// </summary>
+        /// <param name="request">new product object</param>
+        /// <returns>CommonUpsertModel</returns>
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] InsertProductRequest request)
         {
@@ -89,6 +104,12 @@ namespace Task.API.Controllers
             return await Api(response);
         }
 
+        /// <summary>
+        /// This method updates a product with the given values in the product object.
+        /// </summary>
+        /// <param name="id">ProductId</param>
+        /// <param name="request">old product object</param>
+        /// <returns>CommonUpsertModel</returns>
         [HttpPut("{id}")]
         public Task<IActionResult> Update(int id, [FromBody] UpdateProductRequest request)
         {
@@ -124,6 +145,11 @@ namespace Task.API.Controllers
             return Api(response);
         }
 
+        /// <summary>
+        /// This method deletes(makes passive) a product by ID
+        /// </summary>
+        /// <param name="id">ProductId</param>
+        /// <returns>CommonUpsertModel</returns>
         [HttpDelete("{id}")]
         public Task<IActionResult> Delete([FromODataUri] int id)
         {
