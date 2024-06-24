@@ -1,8 +1,8 @@
 # backend-task
 
-## Über das Projekt
+## Ãœber das Projekt
 
-Dieses Projekt ist ein OData RESTful Service, der mit .NET 6 oder .NET 8 entwickelt wurde. Es verwendet Entity Framework Core (EF Core) für die Verbindung mit einer PostgreSQL-Datenbank. Das Projekt ist für grundlegende CRUD-Operationen (Erstellen, Lesen, Aktualisieren, Löschen) ausgelegt.
+Dieses Projekt ist ein OData RESTful Service, der mit .NET 6 entwickelt wurde. Es verwendet Entity Framework Core (EF Core) fÃ¼r die Verbindung mit einer PostgreSQL-Datenbank. Das Projekt ist fÃ¼r grundlegende CRUD-Operationen (Erstellen, Lesen, Aktualisieren, LÃ¶schen) ausgelegt.
 
 ## Voraussetzungen
  - .NET 6 oder .NET 8 SDK
@@ -20,17 +20,17 @@ git clone https://github.com/selmanariaslan/backend-task.git
 cd Task.Api
 ```
 
-### 2. Abhängigkeiten installieren
+### 2. AbhÃ¤ngigkeiten installieren
 ```bash
 dotnet restore
 ```
 	
 ### 3. Datenbankkonfiguration
 
-Zunächst müssen Sie das Projekt ausführen und den ConnectionString über die folgende API verschlüsseln 
+ZunÃ¤chst mÃ¼ssen Sie das Projekt ausfÃ¼hren und den ConnectionString Ã¼ber die folgende API verschlÃ¼sseln 
 
 ```http
-	 https://localhost:5000/Crypto/Encrypt/{YourConnectionString}
+https://localhost:5000/Crypto/Encrypt/{YourConnectionString}
 ```
 	 
 Bearbeiten Sie die appsettings.json Datei, um Ihre PostgreSQL-Verbindungsinformationen einzugeben:
@@ -46,7 +46,7 @@ Bearbeiten Sie die appsettings.json Datei, um Ihre PostgreSQL-Verbindungsinforma
 
 ### 4. Anwenden der Datenbankmigrationen
 	
-Dies sollte sowohl für DatabaseContext(LogManagementContext, TaskContext)
+Dies sollte sowohl fÃ¼r DatabaseContext(LogManagementContext, TaskContext)
 
 ```bash
 dotnet ef migrations add InitialCreate
@@ -59,26 +59,26 @@ dotnet ef database update
 dotnet run
 ```
 
-Öffnen Sie Ihren Browser und gehen Sie zu https://localhost:5000/odata/Products, um die API zu testen.
+Ã–ffnen Sie Ihren Browser und gehen Sie zu https://localhost:5000/odata/Products, um die API zu testen.
 
-## Ausführen der Unit Tests
-Gehen Sie zum Testprojekt und führen Sie die Tests aus:
+## AusfÃ¼hren der Unit Tests
+Gehen Sie zum Testprojekt und fÃ¼hren Sie die Tests aus:
 ```bash
 cd ../Task.Tests
 dotnet test
 ```
 
 ### Testszenarien
-- **GetProductsReturnsOkResponse:** Gibt erfolgreich alle Produkte zurück.
-- **GetProductByIdReturnsOkResponse:** Gibt ein bestimmtes Produkt nach ID erfolgreich zurück.
+- **GetProductsReturnsOkResponse:** Gibt erfolgreich alle Produkte zurÃ¼ck.
+- **GetProductByIdReturnsOkResponse:** Gibt ein bestimmtes Produkt nach ID erfolgreich zurÃ¼ck.
 - **PostProductReturnsCommonUpsertModel:** Erstellt erfolgreich ein neues Produkt.
 - **PutProductReturnsCommonUpsertModel:** Aktualisiert erfolgreich ein bestehendes Produkt.
-- **DeleteProductReturnsCommonUpsertModel:** Löscht(soft) erfolgreich ein bestimmtes Produkt nach ID.
+- **DeleteProductReturnsCommonUpsertModel:** LÃ¶scht(soft) erfolgreich ein bestimmtes Produkt nach ID.
 
 
 ## Weitere Informationen
 ### Swagger: 
-Das Swagger-Interface ist unter **http://localhost:5000/swagger** verfügbar.
+Das Swagger-Interface ist unter **http://localhost:5000/swagger** verfÃ¼gbar.
 
 ### OData Endpoints:
 - GET /odata/Products
