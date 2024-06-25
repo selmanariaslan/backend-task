@@ -32,8 +32,8 @@ namespace Task.Tests
             var response = await _client.GetAsync("/odata/products");
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseBase<Product[]>>();
-            Assert.NotEmpty(result?.Data);
+            var result = await response.Content.ReadFromJsonAsync<Product[]>();
+            Assert.NotEmpty(result);
         }
 
         /// <summary>

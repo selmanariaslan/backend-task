@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Results;
 using Microsoft.Extensions.Caching.Memory;
 using Task.API.Models.Requests;
+using Task.Core;
 using Task.Core.Entities;
 using Task.Core.Entities.CommonModel;
 using Task.Core.Managers;
@@ -28,20 +29,20 @@ namespace Task.API.Controllers
         /// <returns>ResponseBase<IQueryable<Product>></returns>
         [EnableQuery(PageSize = 15)]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(ODataQueryOptions<Product> queryOptions)
         {
             var response = new ResponseBase<IQueryable<Product>>();
             IQueryable<Product> result = _BtsRepo._GetAll<Product>();
-            _LogRepo.Run(ProjectEnvironment.Service, "",
+            _LogRepo.Run(ProjectEnvironment.Service, "GetAllService",
                 action: () =>
                 {
                     result = _BtsRepo._GetAll<Product>();
-                    response = _Service.SuccessServiceResponse(result);
+                    response = _Service.SuccessServiceResponse(result, Constants.DefaultUserMessagesDE.Success);
                 },
-            errorAction: (ex) => response = _Service.ErrorServiceResponse<IQueryable<Product>>(ex),
+            errorAction: (ex) => response = _Service.ErrorServiceResponse<IQueryable<Product>>(ex, Constants.DefaultUserMessagesDE.Error),
             requestModel: null,
             responseModel: response);
-            return await Api(response);
+            return Ok(response.Data);
         }
 
         /// <summary>
@@ -55,13 +56,13 @@ namespace Task.API.Controllers
         {
             var response = new ResponseBase<Product>();
             Product? result = null;
-            _LogRepo.Run(ProjectEnvironment.Service, "",
+            _LogRepo.Run(ProjectEnvironment.Service, "GetByIdService",
                 action: () =>
                 {
                     result = _BtsRepo._Find<Product>(x => x.Id == id);
-                    response = _Service.SuccessServiceResponse(result);
+                    response = _Service.SuccessServiceResponse(result, Constants.DefaultUserMessagesDE.Success);
                 },
-            errorAction: (ex) => response = _Service.ErrorServiceResponse<Product>(ex),
+            errorAction: (ex) => response = _Service.ErrorServiceResponse<Product>(ex, Constants.DefaultUserMessagesDE.Error),
             requestModel: null,
             responseModel: response);
             return await Api(response);
@@ -77,7 +78,7 @@ namespace Task.API.Controllers
         {
             var response = new ResponseBase<CommonUpsertModel>();
             var result = new CommonUpsertModel();
-            _LogRepo.Run(ProjectEnvironment.Service, "",
+            _LogRepo.Run(ProjectEnvironment.Service, "InsertService",
                     action: () =>
                     {
                         var entity = new Product
@@ -93,12 +94,12 @@ namespace Task.API.Controllers
                         {
                             result.Id = entity.Id;
                             result.Status = true;
-                            response = _Service.SuccessServiceResponse(result);
+                            response = _Service.SuccessServiceResponse(result, Constants.DefaultUserMessagesDE.Success);
                         }
                         else
-                            response = _Service.ErrorServiceResponse<CommonUpsertModel>();
+                            response = _Service.ErrorServiceResponse<CommonUpsertModel>(Constants.DefaultUserMessagesDE.Error);
                     },
-                errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex),
+                errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex, Constants.DefaultUserMessagesDE.Error),
                 requestModel: request,
                 responseModel: response);
             return await Api(response);
@@ -115,7 +116,7 @@ namespace Task.API.Controllers
         {
             var response = new ResponseBase<CommonUpsertModel>();
             var result = new CommonUpsertModel();
-            _LogRepo.Run(ProjectEnvironment.Service, "",
+            _LogRepo.Run(ProjectEnvironment.Service, "UpdateService",
                 action: () =>
                 {
                     var product = _BtsRepo._GetById<Product>(id);
@@ -132,14 +133,14 @@ namespace Task.API.Controllers
                         {
                             result.Id = product.Id;
                             result.Status = true;
-                            response = _Service.SuccessServiceResponse(result);
+                            response = _Service.SuccessServiceResponse(result, Constants.DefaultUserMessagesDE.Success);
                         }
                         else
-                            response = _Service.ErrorServiceResponse<CommonUpsertModel>();
+                            response = _Service.ErrorServiceResponse<CommonUpsertModel>(Constants.DefaultUserMessagesDE.Error);
                     }
-                    else _Service.WarningServiceResponse<CommonUpsertModel>("Geçerli rol bulunamadı.");
+                    else _Service.WarningServiceResponse<CommonUpsertModel>(Constants.DefaultUserMessagesDE.Warning);
                 },
-            errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex),
+            errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex, Constants.DefaultUserMessagesDE.Error),
             requestModel: request,
             responseModel: response);
             return Api(response);
@@ -155,7 +156,7 @@ namespace Task.API.Controllers
         {
             var response = new ResponseBase<CommonUpsertModel>();
             var result = new CommonUpsertModel();
-            _LogRepo.Run(ProjectEnvironment.Service, "api",
+            _LogRepo.Run(ProjectEnvironment.Service, "SoftDeleteService",
                 action: () =>
                 {
                     _BtsRepo._SoftDelete<Product>(id);
@@ -163,12 +164,12 @@ namespace Task.API.Controllers
                     {
                         result.Id = id;
                         result.Status = true;
-                        response = _Service.SuccessServiceResponse(result);
+                        response = _Service.SuccessServiceResponse(result, Constants.DefaultUserMessagesDE.Success);
                     }
                     else
-                        response = _Service.ErrorServiceResponse<CommonUpsertModel>();
+                        response = _Service.ErrorServiceResponse<CommonUpsertModel>(Constants.DefaultUserMessagesDE.Warning);
                 },
-            errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex),
+            errorAction: (ex) => response = _Service.ErrorServiceResponse<CommonUpsertModel>(ex, Constants.DefaultUserMessagesDE.Error),
             requestModel: id,
             responseModel: response);
             return Api(response);

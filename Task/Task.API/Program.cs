@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 Ioc.RegisterScopes(builder.Services);
+OData.ODataRegister(builder.Services);
 
-builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("v1", OData.GetEdmModel<Product>()).Filter().Select().Expand());
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "ODataTutorial", Version = "v1" });
